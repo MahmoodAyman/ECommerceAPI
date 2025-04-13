@@ -13,4 +13,5 @@ public class StoreContext(DbContextOptions<StoreContext> options) : DbContext(op
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductConfiguration).Assembly);
         base.OnModelCreating(modelBuilder);
     }
+
 }
