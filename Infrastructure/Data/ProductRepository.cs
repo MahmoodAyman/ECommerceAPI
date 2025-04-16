@@ -30,7 +30,7 @@ public class ProductRepository(StoreContext context) : IProductRepository
         if (!string.IsNullOrWhiteSpace(brand))
         {
             query = query.Where(p => p.Brand.Contains(brand));
-        }
+        } 
         if (!string.IsNullOrWhiteSpace(type))
         {
             query = query.Where(p => p.Type.Contains(type));
