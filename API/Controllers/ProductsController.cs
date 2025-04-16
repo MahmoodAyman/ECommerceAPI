@@ -4,7 +4,7 @@ using Core.Specifications;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; 
 
 
 [Route("api/[controller]")]
@@ -75,14 +75,16 @@ public class ProductsController(IGenericRepository<Product> repository) : Contro
     public async Task<ActionResult<IReadOnlyList<string>>> GetProductBrands()
     {
         // TODO: Implement the method
-        return Ok();
+        var spec = new BrandListSpecification();
+        return Ok(await repository.ListAsync(spec));
     }
 
     [HttpGet("types")]
     public async Task<ActionResult<IReadOnlyList<string>>> GetProductTypes()
     {
         // TODO: Implement the method
-        return Ok();
+        var spec = new TypeListSpecification();
+        return Ok(await repository.ListAsync(spec));
     }
 
     private bool ProductExists(int id)
