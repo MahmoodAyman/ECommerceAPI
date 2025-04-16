@@ -26,8 +26,8 @@ public class ExceptionMiddleware(IHostEnvironment environment, RequestDelegate n
         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
         var response = environment.IsDevelopment()
-        ? new APIErrorResponse(context.Response.StatusCode, ex.Message, ex.StackTrace)
-        : new APIErrorResponse(context.Response.StatusCode, ex.Message, "Internal Server Error");
+            ? new APIErrorResponse(context.Response.StatusCode, ex.Message, ex.StackTrace)
+            : new APIErrorResponse(context.Response.StatusCode, ex.Message, "Internal Server Error");
 
         var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
