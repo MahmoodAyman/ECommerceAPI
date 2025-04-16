@@ -6,11 +6,13 @@ namespace Core.Specifications;
 
 public class ProductFilterSortPaginationSpecification : BaseSpecification<Product>
 {
-    public ProductFilterSortPaginationSpecification(string? brand, string? type, string? sort) : base(x =>
-    (string.IsNullOrWhiteSpace(brand) || x.Brand.Contains(brand)) &&
-    (string.IsNullOrWhiteSpace(type) || x.Type.Contains(type)))
+    public ProductFilterSortPaginationSpecification(ProductSpecificationParams specParams) : base(x =>
+    (!specParams.Brands.Any() || specParams.Brands.Contains(x.Brand)) &&
+    (!specParams.Types.Any() || specParams.Types.Contains(x.Type)))
     {
-        switch (sort)
+        ApplyPaging(specParams.PageSize * (specParams.pageNumber - 1), specParams.PageSize);
+        
+        switch (specParams.Sort)
         {
             case "priceAsc":
                 AddOrderBy(x => x.Price);
