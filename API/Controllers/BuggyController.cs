@@ -28,12 +28,9 @@ public class BuggyController : BaseAPIController
         throw new Exception("This is a test exception");
     }
     [HttpPost("validationerror")]
+    [Consumes("application/json")]
     public IActionResult GetValidationError(CreateProductDto product)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
         return Ok();
     }
 
