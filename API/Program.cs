@@ -62,7 +62,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapIdentityApi<AppUser>();
+app.MapGroup("auth").MapIdentityApi<AppUser>();
 
 
 // Seeding data 
