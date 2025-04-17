@@ -9,6 +9,8 @@ namespace Infrastructure.Data;
 public class StoreContext(DbContextOptions<StoreContext> options) : IdentityDbContext<AppUser>(options)
 {
     public DbSet<Product> Products { get; set; }
+    public DbSet<Address> Addresses { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductConfiguration).Assembly);
