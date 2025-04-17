@@ -1,4 +1,5 @@
 using API.Milddleware;
+using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Services;
@@ -41,6 +42,9 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
 
 builder.Services.AddSingleton<ICartService, CartService>();
 
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<AppUser>().AddEntityFrameworkStores<StoreContext>();
+
 var app = builder.Build();
 
 
@@ -57,6 +61,8 @@ app.UseAuthorization();
 
 
 app.MapControllers();
+
+app.MapIdentityApi<AppUser>();
 
 
 // Seeding data 
